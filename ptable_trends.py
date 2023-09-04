@@ -18,11 +18,14 @@ from matplotlib.cm import (
     viridis,
     cividis,
     turbo,
+    RdBu,
+    coolwarm,
     ScalarMappable,
 )
 from pandas import options
 from typing import List
 import warnings
+import colorcet as cc
 
 
 def ptable_plotter(
@@ -121,6 +124,9 @@ def ptable_plotter(
     elif cmap == "turbo":
         cmap = turbo
         bokeh_palette = "Turbo256"
+    elif cmap == "coolwarm":
+        cmap = coolwarm
+        bokeh_palette = cc.coolwarm
     else:
         ValueError("Invalid color map.")
 
@@ -254,7 +260,7 @@ def ptable_plotter(
         ticker=BasicTicker(desired_num_ticks=10),
         border_line_color=None,
         label_standoff=cbar_standoff,
-        location=(0, 0),
+        location=(0, 180),
         orientation="vertical",
         scale_alpha=alpha,
         major_label_text_font_size=f"{cbar_fontsize}pt",
